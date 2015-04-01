@@ -1,7 +1,8 @@
 import urllib
 
-from pastry import create_app
 from flask import url_for
+from subprocess import call
+from pastry import create_app
 from flask.ext.script import Manager
 
 
@@ -25,6 +26,11 @@ def list_routes():
 
     for line in sorted(output):
         print line
+
+
+@manager.command
+def test():
+    call(['python', '-m', 'unittest', 'discover'])
 
 
 if __name__ == '__main__':
