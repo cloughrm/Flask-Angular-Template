@@ -24,6 +24,9 @@ class User(object):
             'username': self.username,
             'password': self.password,
             'api_key': self.generate_api_key(),
+            'admin': False,
+            'groups': ['user'],
+            'verified': False,
         })
         return object_id
 
@@ -54,12 +57,10 @@ class User(object):
         try:
             data = s.loads(token)
         except SignatureExpired:
-            # Valid token, but expired
-            print 'expired token'
+            app.logger.info('Expired Token')
             return False
         except BadSignature:
-            # Invalid token
-            print 'invalid token'
+            app.logger.warning('Invalid Token')
             return False
         user = mongo.db.users.find_one({'username': data['username']})
         return user

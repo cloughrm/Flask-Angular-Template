@@ -12,7 +12,7 @@ from flask.ext.restful import Resource, reqparse
 class UsersResource(Resource):
     @login_required
     def get(self, id):
-        return mongo.db.users.find_one({'_id': ObjectId(id)})
+        return mongo.db.users.find_one_or_404({'_id': ObjectId(id)})
 
     @login_required
     def delete(self, id):

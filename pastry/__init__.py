@@ -4,8 +4,8 @@ from flask.ext import restful
 from flask import Flask, make_response
 
 from pastry.db import mongo
-from pastry.resources import v1
 from pastry.encoder import APIEncoder
+from pastry.routes import register_routes
 
 
 def json_renderer(data, code, headers=None):
@@ -15,19 +15,14 @@ def json_renderer(data, code, headers=None):
     return resp
 
 
-def route(name, version=1):
-    return '/api/v{}{}'.format(version, name)
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
+    mongo.init_app(app)
 
-
-app = Flask(__name__)
-app.config.from_object('pastry.settings')
-mongo.init_app(app)
-
-api = restful.Api(app)
-api.representations.update({
-    'application/json': json_renderer
-})
-
-api.add_resource(v1.UsersListResource, route('/users/'))
-api.add_resource(v1.UsersResource, route('/users/<id>'))
-api.add_resource(v1.LoginResource, route('/login'))
+    api = restful.Api(app)
+    api.representations.update({
+        'application/json': json_renderer
+    })
+    register_routes(api)
+    return app

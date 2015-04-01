@@ -1,10 +1,11 @@
 import urllib
 
-from pastry import app
+from pastry import create_app
 from flask import url_for
 from flask.ext.script import Manager
 
 
+app = create_app('pastry.settings.BaseConfig')
 manager = Manager(app)
 
 
@@ -24,11 +25,6 @@ def list_routes():
 
     for line in sorted(output):
         print line
-
-
-@manager.command
-def hello():
-    print 'hello'
 
 
 if __name__ == '__main__':
