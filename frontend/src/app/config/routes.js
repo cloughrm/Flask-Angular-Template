@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('frontend')
+angular.module('PastryApp')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

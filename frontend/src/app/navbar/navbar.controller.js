@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('frontend')
+angular.module('PastryApp')
 .controller('NavbarCtrl', function($scope, $location, User) {
     $scope.isCollapsed = true;
 

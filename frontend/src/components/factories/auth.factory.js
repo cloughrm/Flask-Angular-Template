@@ -1,4 +1,4 @@
-angular.module('frontend')
+angular.module('PastryApp')
 .factory('authInjector', function($location, User) {
 
     var authInjector = {

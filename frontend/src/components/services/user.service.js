@@ -1,4 +1,4 @@
-angular.module('frontend')
+angular.module('PastryApp')
 .service('User', function(localStorageService) {
 
     var User = {};

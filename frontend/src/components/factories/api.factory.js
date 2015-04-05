@@ -1,4 +1,4 @@
-angular.module('frontend')
+angular.module('PastryApp')
 .factory('PastryApi', function(Restangular) {
 
     var PastryApi = {};

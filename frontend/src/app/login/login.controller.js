@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('frontend')
+angular.module('PastryApp')
 .controller('LoginCtrl', function($scope, $location, PastryApi, User) {
 
     $scope.login = function() {
