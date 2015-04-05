@@ -16,7 +16,7 @@ class LoginResource(Resource):
 
         user = User(args.username, args.password)
         if not user.exists():
-            return {'failed': 'User does not exist'}, httpcodes.BAD_REQUEST
+            return {'message': 'User does not exist'}, httpcodes.BAD_REQUEST
         if not user.verify_password(args.password):
-            return {'failed': 'Incorrect password'}, httpcodes.BAD_REQUEST
+            return {'message': 'Incorrect password'}, httpcodes.BAD_REQUEST
         return {'Auth-Token': user.generate_auth_token()}, httpcodes.OK

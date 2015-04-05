@@ -1,0 +1,16 @@
+.login-wrapper {
+    text-align: center;
+    .login {
+        text-align: center;
+        padding-top: 30px;
+        width: 200px;
+        margin: 0 auto;
+        input {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    .text-danger {
+        margin-top: 10px;
+    }
+}

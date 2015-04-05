@@ -1,6 +1,7 @@
 import json
 
 from flask.ext import restful
+from flask.ext.cors import CORS
 from flask import Flask, make_response
 
 from pastry.db import mongo
@@ -17,6 +18,7 @@ def json_renderer(data, code, headers=None):
 
 def create_app(config):
     app = Flask(__name__)
+    CORS(app, allow_headers=['Content-Type', 'Auth-Token'])
     app.config.from_object(config)
     mongo.init_app(app)
 

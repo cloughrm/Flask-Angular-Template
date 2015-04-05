@@ -45,6 +45,6 @@ class UsersListResource(Resource):
         args = self.parser.parse_args()
         user = User(args.username, args.password)
         if mongo.db.users.find_one({'username': user.username}):
-            return {'failed': 'User {} already exists'.format(user.username)}, httpcodes.BAD_REQUEST
+            return {'message': 'User {} already exists'.format(user.username)}, httpcodes.BAD_REQUEST
         user_id = user.create()
         return {'id': user_id}, httpcodes.CREATED

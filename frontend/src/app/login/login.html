@@ -1,0 +1,23 @@
+<div class="login-wrapper">
+
+    <form class="login" name="loginForm" ng-submit="login()">
+        <input
+            autofocus
+            class="form-control"
+            type="text"
+            placeholder="Username"
+            ng-model="username"
+            ng-required="true"
+            ng-pattern="/.*@.*\..*/">
+        <input
+            class="form-control"
+            type="password"
+            placeholder="Password"
+            ng-model="password"
+            ng-required="true">
+        <button class="btn btn-primary" ng-disabled="loginForm.$invalid" type="submit">Login</button>
+    </form>
+
+    <p ng-if="error" class="text-danger">{{error.message}}</p>
+
+</div>

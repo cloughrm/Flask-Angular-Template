@@ -1,6 +1,6 @@
 from functools import wraps
 from pastry.models import User
-from flask import request, abort
+from flask import request, abort, jsonify
 
 
 def parse_api_key():
@@ -26,10 +26,21 @@ def login_required(f):
             # Verify key/token
             if api_key:
                 if not User.verify_api_key(api_key):
-                    abort(401)
+                    response = jsonify({
+                        'message': 'Invalid API Key',
+                        'invalid_api_key': True,
+                    })
+                    response.status_code = 401
+                    return response
+
             elif token:
                 if not User.verify_auth_token(token):
-                    abort(401)
+                    response = jsonify({
+                        'message': 'Expired Token',
+                        'expired_token': True,
+                    })
+                    response.status_code = 401
+                    return response
 
         return f(*args, **kwargs)
     return decorated
