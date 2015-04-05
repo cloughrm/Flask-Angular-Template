@@ -10,7 +10,6 @@ angular.module('frontend', [
     'LocalStorageModule',
 ])
 .config(function(RestangularProvider) {
-    // RestangularProvider.setBaseUrl('http://localhost:5000');
     RestangularProvider.setBaseUrl('{{API_URL}}');
 })
 .config(function(localStorageServiceProvider) {
