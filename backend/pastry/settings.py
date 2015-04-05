@@ -9,6 +9,9 @@ class BaseConfig(object):
     # Database settings
     MONGO_URI = os.getenv('MONGO_URI', 'mongodb://localhost/pastry_dev')
 
+    # Sentry
+    SENTRY_DSN = os.getenv('PASTRY_DSN')
+
 
 class TestConfig(BaseConfig):
     MONGO_URI = 'mongodb://localhost/pastry_test'
